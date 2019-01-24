@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      data: ["a","b","c","d"]
+    }
+  }
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+    let dataToDisplay = this.state.data.map( (element, index) => {
+        return (
+          <h2 key={ index }>{ element }</h2>
+        )
+      })
+  
+      return (
+        <div className="App">
+          { dataToDisplay }
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+    // return (
+      
+    //   <div>
+    //     <h2>{this.state.data[0]}</h2>
+    //     <h2>{this.state.data[1]}</h2>
+    //     <h2>{this.state.data[2]}</h2>
+    //     <h2>{this.state.data[3]}</h2>
+    //   </div>
     );
   }
 }

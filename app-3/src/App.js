@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      data: ["a","b","c","d"],
+      input: ""
+    }
+  }
+  handleChange(val){
+    this.setState({
+      input: val
+    })
+  }
   render() {
+    var dataToDisplay = this.state.data.filter((elem)=>{
+      return elem.includes(this.state.input)
+    }).map((elem, index)=>{
+      return(
+        <h2 key={index}>{elem}</h2>
+      )
+    })
+
+
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <input onChange={e=>this.handleChange(e.target.value)}></input>
+        <p>{dataToDisplay}</p>
       </div>
     );
   }
